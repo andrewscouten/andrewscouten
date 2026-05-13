@@ -134,7 +134,7 @@ export default function Me() {
             {me.cta.secondary.label}
           </a>
           <a
-            href="/resume.pdf"
+            href="/AndrewScouten.pdf"
             download
             className="px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:border-cyan-400"
             style={{

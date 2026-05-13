@@ -1,0 +1,34 @@
+- title: AI for Pavement Condition Assessment from 2D/3D Surface Images
+  venue: TxDOT Project 0-7150 — Peer-Reviewed Publication
+  year: "2023–2025"
+  description: >-
+    Developed and evaluated CNN and transformer-based models for automated crack
+    detection in infrastructure-scale pavement imaging datasets. Resulted in a
+    conference poster and peer-reviewed publication under the Texas Department
+    of Transportation research program.
+  tags:
+    - Computer Vision
+    - CNN
+    - Transformers
+    - Infrastructure ML
+  type: Journal / Conference
+  accent: "var(--cyan)"
+  url: ""
+
+- title: Bacterial Adhesion and Corrosion Analysis from ISS-Derived Samples
+  venue: NASA / SpaceX-21 Mission — Peer-Reviewed Publication
+  year: "2023–2024"
+  description: >-
+    Applied classical machine learning and deep learning methods for corrosion
+    segmentation and labeling on microbiology samples collected aboard the
+    International Space Station. Contributed data organization and
+    quality-control pipelines supporting the NASA-backed SpaceX-21 research
+    effort.
+  tags:
+    - Deep Learning
+    - Segmentation
+    - Microbiology
+    - Space Research
+  type: Journal
+  accent: "var(--amber)"
+  url: ""

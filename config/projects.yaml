@@ -1,0 +1,60 @@
+- name: OncoLearn
+  year: "2026"
+  tag: "Hackathon · Federated Learning"
+  description: >-
+    Multi-modal ML toolkit for cancer genomics and biomarker discovery. Led a
+    cross-functional team of 15 contributors across three sub-projects, guiding
+    overall architecture and development.
+  tech:
+    - Python
+    - PyTorch
+    - Federated Learning
+    - Multi-modal ML
+  accent: "var(--cyan)"
+  url: ""
+
+- name: ClassiGraph
+  year: "2025"
+  tag: "Hackathon · Graph ML"
+  description: >-
+    Graph Neural Network for multi-modal cancer subtype classification.
+    Co-developed as part of a competitive hackathon, combining graph structure
+    with molecular feature data.
+  tech:
+    - Python
+    - PyTorch
+    - GNN
+    - Cancer Genomics
+  accent: "var(--amber)"
+  url: ""
+
+- name: TxDOT Pavement AI
+  year: "2023–2025"
+  tag: "Research · Computer Vision"
+  description: >-
+    End-to-end pipeline for large-scale pavement condition assessment from 2D/3D
+    surface images (Project 0-7150). Designed, trained, and evaluated CNN and
+    transformer-based crack detection models.
+  tech:
+    - Python
+    - PyTorch
+    - CUDA
+    - CNN
+    - Transformers
+  accent: "var(--cyan)"
+  url: ""
+
+- name: LurgCraft Network
+  year: "2021–2024"
+  tag: "Production · Distributed Systems"
+  description: >-
+    Sole developer of a distributed Minecraft network. Engineered cross-server
+    communication, real-time synchronization across game servers and platforms.
+    Shipped 20 custom projects and 46 enhancements.
+  tech:
+    - Java
+    - Maven
+    - Distributed Systems
+    - Minecraft API
+  accent: "var(--amber)"
+  url: ""

@@ -1,0 +1,66 @@
+skills:
+  - label: Python
+    category: language
+  - label: C++
+    category: language
+  - label: C
+    category: language
+  - label: Java
+    category: language
+  - label: JavaScript
+    category: language
+  - label: R
+    category: language
+  - label: PyTorch
+    category: ml
+  - label: CUDA
+    category: ml
+  - label: CNN
+    category: ml
+  - label: Transformers
+    category: ml
+  - label: GNN
+    category: ml
+  - label: Scikit-learn
+    category: ml
+  - label: React
+    category: web
+  - label: React Native
+    category: web
+  - label: Node.js
+    category: web
+  - label: Expo
+    category: web
+  - label: PostgreSQL
+    category: data
+  - label: MongoDB
+    category: data
+  - label: SQL
+    category: data
+  - label: Git
+    category: tools
+  - label: Linux
+    category: tools
+  - label: Anaconda
+    category: tools
+  - label: CMake
+    category: tools
+  - label: Maven
+    category: tools
+
+categories:
+  language:
+    label: Languages
+    color: "#00d9ff"
+  ml:
+    label: ML / AI
+    color: "#f59e0b"
+  web:
+    label: Web & Mobile
+    color: "#a78bfa"
+  data:
+    label: Databases
+    color: "#34d399"
+  tools:
+    label: Tools & Systems
+    color: "#fb7185"

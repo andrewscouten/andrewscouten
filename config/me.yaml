@@ -1,0 +1,26 @@
+greeting: "Hello, I'm"
+firstName: Andrew
+lastName: Scouten
+roles:
+  - ML Engineer
+  - Researcher
+  - Software Engineer
+  - Deep Learning Practitioner
+bio: >-
+  M.S. Computer Science candidate at Texas State University. I build end-to-end
+  data pipelines and train deep learning models for real-world problems — from
+  pavement crack detection to cancer genomics.
+cta:
+  primary:
+    label: View Projects
+    href: "#projects"
+  secondary:
+    label: Get in Touch
+    href: "mailto:andrewscouten@gmail.com"
+socials:
+  - label: GitHub
+    href: "https://github.com/andrewscouten"
+  - label: LinkedIn
+    href: "https://linkedin.com/in/andrewscouten"
+  - label: ORCID
+    href: "https://orcid.org/0009-0004-6418-7158"

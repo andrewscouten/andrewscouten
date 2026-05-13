@@ -1,0 +1,58 @@
+- type: work
+  title: Graduate Research Assistant
+  org: Texas State University
+  location: San Marcos, TX
+  period: May 2023 – Dec 2025
+  bullets:
+    - >-
+      Conducted research for the Texas Department of Transportation (Project
+      0-7150: AI for Pavement Condition Assessment from 2D/3D Surface Images).
+    - >-
+      Built and maintained data pipelines for large-scale pavement imaging
+      datasets; designed, trained, and evaluated CNN and transformer-based
+      models for crack detection, leading to a conference poster and
+      peer-reviewed publication.
+
+- type: work
+  title: Undergraduate Researcher
+  org: Texas State University
+  location: San Marcos, TX
+  period: Jan 2023 – Dec 2024
+  bullets:
+    - >-
+      Contributed to NASA-backed SpaceX-21 research on bacterial adhesion and
+      corrosion using International Space Station–derived samples.
+    - >-
+      Developed data organization and quality-control pipelines; applied
+      classical ML and deep learning methods for corrosion segmentation and
+      labeling, resulting in a peer-reviewed publication.
+
+- type: work
+  title: Java Developer
+  org: LurgCraft, Minecraft Network
+  location: Remote
+  period: Jan 2021 – Jan 2024
+  bullets:
+    - >-
+      Sole developer — engineered cross-server communication systems enabling
+      real-time synchronization across multiple game servers, Minecraft
+      versions, and platforms.
+    - >-
+      Delivered 20 custom projects and 46 enhancements to existing codebases,
+      building strong instincts for rapidly reading and extending legacy
+      systems.
+
+- type: edu
+  title: M.S. Computer Science
+  org: Texas State University
+  location: San Marcos, TX
+  period: Dec 2026 (expected)
+  bullets:
+    - "Research focus: scalable applied deep learning and domain-specific ML systems."
+
+- type: edu
+  title: B.S. Computer Science
+  org: Texas State University
+  location: San Marcos, TX
+  period: May 2023
+  bullets: []

@@ -2,25 +2,35 @@ greeting: "Hello, I'm"
 firstName: Andrew
 lastName: Scouten
 roles:
-  - ML Engineer
-  - Researcher
-  - Software Engineer
-  - Deep Learning Practitioner
+  - label: Researcher
+    accent: "var(--cyan)"
+  - label: Data Analyst
+    accent: "var(--amber)"
+  - label: ML Engineer
+    accent: "var(--cyan)"
+  - label: Deep Learning Practitioner
+    accent: "var(--amber)"
+  - label: Software Engineer
+    accent: "var(--cyan)"
+  - label: Full-Stack Developer
+    accent: "var(--amber)"
 bio: >-
   M.S. Computer Science candidate at Texas State University. I build end-to-end
   data pipelines and train deep learning models for real-world problems — from
   pavement crack detection to cancer genomics.
 cta:
-  primary:
-    label: View Projects
+  - label: View Projects
     href: "#projects"
-  secondary:
-    label: Get in Touch
-    href: "mailto:andrewscouten@gmail.com"
+    variant: primary
+  - label: Resume & CV
+    href: /AndrewScouten.pdf
+    download: true
+  - label: Get in Touch
+    href: "#email"
 socials:
   - label: GitHub
-    href: "https://github.com/andrewscouten"
+    href: "#github"
   - label: LinkedIn
-    href: "https://linkedin.com/in/andrewscouten"
+    href: "#linkedin"
   - label: ORCID
-    href: "https://orcid.org/0009-0004-6418-7158"
+    href: "#orcid"

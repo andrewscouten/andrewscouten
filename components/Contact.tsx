@@ -2,33 +2,13 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import contactData from "../config/contact.yaml";
 
-const links = [
-  {
-    label: "Email",
-    value: "andrewscouten@gmail.com",
-    href: "mailto:andrewscouten@gmail.com",
-    mono: true,
-  },
-  {
-    label: "GitHub",
-    value: "github.com/andrewscouten",
-    href: "https://github.com/andrewscouten",
-    mono: true,
-  },
-  {
-    label: "LinkedIn",
-    value: "linkedin.com/in/andrewscouten",
-    href: "https://linkedin.com/in/andrewscouten",
-    mono: true,
-  },
-  {
-    label: "ORCID",
-    value: "0009-0004-6418-7158",
-    href: "https://orcid.org/0009-0004-6418-7158",
-    mono: true,
-  },
-];
+const { subtitle, links, footer } = contactData as {
+  subtitle: string;
+  links: { label: string; value: string; href: string; mono: boolean }[];
+  footer: string;
+};
 
 export default function Contact() {
   const ref = useRef(null);
@@ -60,8 +40,7 @@ export default function Contact() {
           className="text-base max-w-xl mb-12 leading-relaxed"
           style={{ color: "var(--muted)" }}
         >
-          Open to research collaborations, full-time ML/SWE roles, and interesting conversations.
-          Reach out via any of the channels below.
+          {subtitle}
         </motion.p>
 
         <div className="grid sm:grid-cols-2 gap-4">
@@ -102,7 +81,7 @@ export default function Contact() {
       {/* Footer */}
       <div className="max-w-5xl mx-auto mt-20 pt-8 flex items-center justify-between" style={{ borderTop: "1px solid var(--border)" }}>
         <span className="section-label text-xs" style={{ color: "var(--muted)" }}>
-          Andrew Scouten · San Marcos, TX
+          {footer}
         </span>
         <span className="section-label text-xs" style={{ color: "var(--muted)" }}>
           {new Date().getFullYear()}

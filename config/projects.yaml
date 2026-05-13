@@ -10,8 +10,9 @@
     - PyTorch
     - Federated Learning
     - Multi-modal ML
-  accent: "var(--cyan)"
-  url: ""
+    - Cancer Genomics
+  accent: "var(--amber)"
+  url: "https://github.com/collaborativebioinformatics/OncoLearn"
 
 - name: ClassiGraph
   year: "2025"
@@ -26,21 +27,22 @@
     - GNN
     - Cancer Genomics
   accent: "var(--amber)"
-  url: ""
+  url: "https://github.com/collaborativebioinformatics/ClassiGraph"
 
 - name: TxDOT Pavement AI
   year: "2023–2025"
   tag: "Research · Computer Vision"
   description: >-
-    End-to-end pipeline for large-scale pavement condition assessment from 2D/3D
-    surface images (Project 0-7150). Designed, trained, and evaluated CNN and
-    transformer-based crack detection models.
+    Data pipelines for crack segmentation and object detection in 2D/3D pavement
+    surface images (Project 0-7150). Trained and evaluated CNN and
+    transformer-based models for crack detection.
   tech:
     - Python
     - PyTorch
     - CUDA
     - CNN
     - Transformers
+    - YOLO
   accent: "var(--cyan)"
   url: ""
 
@@ -48,13 +50,14 @@
   year: "2021–2024"
   tag: "Production · Distributed Systems"
   description: >-
-    Sole developer of a distributed Minecraft network. Engineered cross-server
-    communication, real-time synchronization across game servers and platforms.
-    Shipped 20 custom projects and 46 enhancements.
+    Sole Java developer of a distributed Minecraft network. Engineered
+    cross-server communication enabling real-time synchronization across multiple
+    game servers, versions, and platforms. Delivered 20 custom projects and
+    enhanced 46 existing codebases.
   tech:
     - Java
     - Maven
     - Distributed Systems
     - Minecraft API
-  accent: "var(--amber)"
+  accent: "var(--cyan)"
   url: ""

@@ -1,34 +1,84 @@
-- title: AI for Pavement Condition Assessment from 2D/3D Surface Images
-  venue: TxDOT Project 0-7150 — Peer-Reviewed Publication
-  year: "2023–2025"
+- title: "MoPac+: Multimodal Modeling of Pavement Cracks Using Hard-Example Mining and Context-Aware Feature Aggregation"
+  venue: "Measurement · Elsevier"
+  year: "2026"
   description: >-
-    Developed and evaluated CNN and transformer-based models for automated crack
-    detection in infrastructure-scale pavement imaging datasets. Resulted in a
-    conference poster and peer-reviewed publication under the Texas Department
-    of Transportation research program.
+    Extended journal publication of the MoPac pipeline, incorporating hard-example
+    mining and context-aware feature aggregation for multimodal pavement crack
+    modeling from 2D/3D surface imagery collected under TxDOT Project 0-7150.
   tags:
     - Computer Vision
+    - Crack Detection
+    - Multimodal Learning
+    - Hard-Example Mining
+    - Pavement Imaging
+  type: Journal
+  accent: "var(--cyan)"
+  url: "https://doi.org/10.1016/j.measurement.2026.120896"
+
+- title: "Towards Federated Learning Across Biobanks: Prototype Software from the 2026 CMU–NVIDIA Hackathon"
+  venue: "OSF Preprints"
+  year: "2026"
+  description: >-
+    Preprint accompanying the OncoLearn hackathon project — a multi-modal ML
+    toolkit for cancer genomics developed across three sub-teams at the 2026
+    Carnegie Mellon University–NVIDIA collaborative bioinformatics hackathon.
+  tags:
+    - Federated Learning
+    - Cancer Genomics
+    - Multi-modal ML
+    - Biobank
+    - Open Science
+  type: Preprint
+  accent: "var(--amber)"
+  url: "https://doi.org/10.37044/osf.io/5psfj_v1"
+
+- title: "A Blueprint for Open Science: Knowledge Graphs to Enable Biological AI Models"
+  venue: "OSF Preprints"
+  year: "2025"
+  description: >-
+    Documents a transatlantic collaborative effort to build and deploy knowledge
+    graphs supporting biological AI models, developed as part of an open science
+    initiative.
+  tags:
+    - Knowledge Graphs
+    - Bioinformatics
+    - Graph ML
+    - Open Science
+    - Collaborative Research
+  type: Preprint
+  accent: "var(--amber)"
+  url: "https://doi.org/10.37044/osf.io/g4rk2_v1"
+
+- title: "Deep Learning Pipeline for Modeling Pavement Cracks With an Imbalanced Dataset (MoPaC)"
+  venue: "Transportation Research Board Annual Meeting"
+  year: "2025"
+  description: >-
+    Conference poster presenting MoPaC, a deep learning pipeline for pavement
+    crack modeling on large-scale, class-imbalanced 2D/3D imaging datasets
+    collected under TxDOT Project 0-7150.
+  tags:
+    - Computer Vision
+    - Crack Detection
+    - Imbalanced Learning
     - CNN
-    - Transformers
-    - Infrastructure ML
-  type: Journal / Conference
+    - Pavement Imaging
+  type: Conference Poster
   accent: "var(--cyan)"
   url: ""
 
-- title: Bacterial Adhesion and Corrosion Analysis from ISS-Derived Samples
-  venue: NASA / SpaceX-21 Mission — Peer-Reviewed Publication
-  year: "2023–2024"
+- title: "Automated Corrosion Identification in Metal Imagery: Traditional vs. Deep Learning"
+  venue: "Lecture Notes in Computer Science · Springer"
+  year: "2025"
   description: >-
-    Applied classical machine learning and deep learning methods for corrosion
-    segmentation and labeling on microbiology samples collected aboard the
-    International Space Station. Contributed data organization and
-    quality-control pipelines supporting the NASA-backed SpaceX-21 research
-    effort.
+    Comparative study of classical ML and deep learning methods for corrosion
+    segmentation and labeling on metal imagery derived from NASA-backed SpaceX-21
+    International Space Station samples.
   tags:
-    - Deep Learning
     - Segmentation
-    - Microbiology
-    - Space Research
-  type: Journal
+    - Corrosion Detection
+    - Deep Learning
+    - Classical ML
+    - Biomedical Imaging
+  type: Book Chapter
   accent: "var(--amber)"
-  url: ""
+  url: "https://doi.org/10.1007/978-3-031-77389-1_21"

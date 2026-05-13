@@ -3,13 +3,12 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import aboutData from "../config/about.yaml";
 
-const facts = [
-  { label: "Location", value: "San Marcos, TX" },
-  { label: "Degree", value: "M.S. Computer Science (Dec 2026)" },
-  { label: "Focus", value: "Applied Deep Learning & Data Pipelines" },
-  { label: "Languages", value: "English (Native), German (A2/B1)" },
-];
+const { paragraphs, facts } = aboutData as {
+  paragraphs: string[];
+  facts: { label: string; value: string }[];
+};
 
 export default function About() {
   const ref = useRef(null);
@@ -41,19 +40,15 @@ export default function About() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <p className="text-base leading-relaxed mb-5" style={{ color: "var(--muted)" }}>
-              I&apos;m a machine learning engineer and researcher with a track record of shipping
-              production-quality pipelines and models in collaborative, cross-disciplinary
-              environments. My research spans infrastructure-scale pavement analysis with TxDOT
-              and microbiology imaging aboard the International Space Station under a
-              NASA/SpaceX-21 mission.
-            </p>
-            <p className="text-base leading-relaxed" style={{ color: "var(--muted)" }}>
-              Beyond research, I&apos;ve led hackathon teams of up to 15 contributors, built
-              multi-modal ML systems for cancer genomics, and spent three years as the sole
-              developer of a distributed Minecraft network — sharpening my instincts for reading,
-              extending, and shipping production code independently.
-            </p>
+            {paragraphs.map((p, i) => (
+              <p
+                key={i}
+                className={`text-base leading-relaxed${i < paragraphs.length - 1 ? " mb-5" : ""}`}
+                style={{ color: "var(--muted)" }}
+              >
+                {p}
+              </p>
+            ))}
           </motion.div>
 
           <motion.div

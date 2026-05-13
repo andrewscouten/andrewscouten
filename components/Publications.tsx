@@ -1,8 +1,11 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import publicationsData from "../config/publications.yaml";
+import linksData from "../config/links.yaml";
+
+const siteLinks: Record<string, string> = linksData;
 
 interface Publication {
   title: string;
@@ -36,33 +39,15 @@ export default function Publications() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.05 }}
-          className="text-3xl sm:text-4xl font-bold mb-4"
+          className="text-3xl sm:text-4xl font-bold mb-12"
         >
           Research Output
         </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-sm mb-12"
-          style={{ color: "var(--muted)" }}
-        >
-          ORCID:{" "}
-          <a
-            href="https://orcid.org/0009-0004-6418-7158"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:opacity-70 transition-opacity"
-            style={{ color: "var(--cyan)", fontFamily: "var(--font-mono)" }}
-          >
-            0009-0004-6418-7158
-          </a>
-        </motion.p>
 
         <div className="flex flex-col gap-6">
-          {publications.map((pub, i) => (
+          {publications.slice(0, 3).map((pub, i) => (
+            <React.Fragment key={i}>
             <motion.a
-              key={i}
               href={pub.url || undefined}
               target={pub.url ? "_blank" : undefined}
               rel={pub.url ? "noopener noreferrer" : undefined}
@@ -115,7 +100,21 @@ export default function Publications() {
                 ))}
               </div>
             </motion.a>
+            </React.Fragment>
           ))}
+          <div className="flex items-center gap-4">
+            <div className="flex-1 h-px" style={{ background: "var(--border)" }} />
+            <a
+              href={siteLinks.orcid}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs hover:opacity-70 transition-opacity whitespace-nowrap"
+              style={{ color: "var(--muted)", fontFamily: "var(--font-mono)" }}
+            >
+              See more on ORCID
+            </a>
+            <div className="flex-1 h-px" style={{ background: "var(--border)" }} />
+          </div>
         </div>
       </div>
     </section>

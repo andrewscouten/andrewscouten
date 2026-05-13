@@ -35,10 +35,24 @@ export default function Projects() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.05 }}
-          className="text-3xl sm:text-4xl font-bold mb-12"
+          className="text-3xl sm:text-4xl font-bold mb-3"
         >
           What I&apos;ve Built
         </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.08 }}
+          className="text-xs mb-10 flex items-center gap-1.5"
+          style={{ color: "var(--muted)" }}
+        >
+          <span
+            className="inline-block w-2 h-2 rounded-full flex-shrink-0"
+            style={{ background: "#a855f7" }}
+          />
+          - external link
+        </motion.p>
 
         <div className="grid sm:grid-cols-2 gap-5">
           {projects.map((p, i) => (
@@ -55,7 +69,13 @@ export default function Projects() {
             >
               <div className="flex items-start justify-between mb-3">
                 <div>
-                  <h3 className="font-semibold text-base mb-0.5" style={{ color: "var(--text)" }}>
+                  <h3 className="font-semibold text-base mb-0.5 flex items-center gap-1.5" style={{ color: "var(--text)" }}>
+                    {p.url && (
+                      <span
+                        className="inline-block w-2 h-2 rounded-full flex-shrink-0"
+                        style={{ background: "#a855f7" }}
+                      />
+                    )}
                     {p.name}
                   </h3>
                   <span className="section-label text-xs" style={{ color: p.accent }}>

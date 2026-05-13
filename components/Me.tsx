@@ -3,17 +3,25 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import meData from "../config/me.yaml";
+import linksData from "../config/links.yaml";
+
+const links: Record<string, string> = linksData;
+
+function resolveHref(href: string): string {
+  if (href.startsWith("#")) {
+    const key = href.slice(1);
+    return links[key] ?? href;
+  }
+  return href;
+}
 
 interface MeConfig {
   greeting: string;
   firstName: string;
   lastName: string;
-  roles: string[];
+  roles: { label: string; accent: string }[];
   bio: string;
-  cta: {
-    primary: { label: string; href: string };
-    secondary: { label: string; href: string };
-  };
+  cta: { label: string; href: string; variant?: string; download?: boolean }[];
   socials: { label: string; href: string }[];
 }
 
@@ -95,7 +103,7 @@ export default function Me() {
           className="text-2xl sm:text-3xl font-light mb-8 flex items-center gap-3 h-10"
           style={{ color: "var(--muted)" }}
         >
-          <span style={{ color: "var(--cyan)" }}>&gt;</span>
+          <span style={{ color: "#a0aec0" }}>&gt;</span>
           <AnimatePresence mode="wait">
             <motion.span
               key={roleIndex}
@@ -103,8 +111,9 @@ export default function Me() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.35 }}
+              style={{ color: me.roles[roleIndex].accent }}
             >
-              {me.roles[roleIndex]}
+              {me.roles[roleIndex].label}
             </motion.span>
           </AnimatePresence>
         </motion.div>
@@ -125,47 +134,42 @@ export default function Me() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="flex flex-wrap gap-4"
         >
-          <a
-            href={me.cta.primary.href}
-            onClick={(e) => {
-              const target = me.cta.primary.href;
-              if (target.startsWith("#")) {
-                e.preventDefault();
-                document.querySelector(target)?.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
-            className="px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:opacity-90"
-            style={{
-              background: "var(--cyan)",
-              color: "#000",
-              fontFamily: "var(--font-mono)",
-            }}
-          >
-            {me.cta.primary.label}
-          </a>
-          <a
-            href={me.cta.secondary.href}
-            className="px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:border-cyan-400"
-            style={{
-              border: "1px solid var(--border)",
-              color: "var(--text)",
-              fontFamily: "var(--font-mono)",
-            }}
-          >
-            {me.cta.secondary.label}
-          </a>
-          <a
-            href="/AndrewScouten.pdf"
-            download
-            className="px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:border-cyan-400"
-            style={{
-              border: "1px solid var(--border)",
-              color: "var(--text)",
-              fontFamily: "var(--font-mono)",
-            }}
-          >
-            Resume & CV
-          </a>
+          {me.cta.map((btn) =>
+            btn.variant === "primary" ? (
+              <a
+                key={btn.label}
+                href={btn.href}
+                onClick={(e) => {
+                  if (btn.href.startsWith("#")) {
+                    e.preventDefault();
+                    document.querySelector(btn.href)?.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+                className="px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:opacity-90"
+                style={{
+                  background: "var(--cyan)",
+                  color: "#000",
+                  fontFamily: "var(--font-mono)",
+                }}
+              >
+                {btn.label}
+              </a>
+            ) : (
+              <a
+                key={btn.label}
+                href={resolveHref(btn.href)}
+                {...(btn.download ? { download: true } : {})}
+                className="px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:border-cyan-400"
+                style={{
+                  border: "1px solid var(--border)",
+                  color: "var(--text)",
+                  fontFamily: "var(--font-mono)",
+                }}
+              >
+                {btn.label}
+              </a>
+            )
+          )}
         </motion.div>
 
         {/* Social links */}
@@ -178,7 +182,7 @@ export default function Me() {
           {me.socials.map((s) => (
             <a
               key={s.label}
-              href={s.href}
+              href={resolveHref(s.href)}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={s.label}

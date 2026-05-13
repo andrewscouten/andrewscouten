@@ -5,8 +5,8 @@
   period: May 2023 – Dec 2025
   bullets:
     - >-
-      Conducted research for the Texas Department of Transportation (Project
-      0-7150: AI for Pavement Condition Assessment from 2D/3D Surface Images).
+      Conducted research for the [Texas Department of Transportation (Project
+      0-7150: AI for Pavement Condition Assessment from 2D/3D Surface Images)](https://rip.trb.org/View/2056297).
     - >-
       Built and maintained data pipelines for large-scale pavement imaging
       datasets; designed, trained, and evaluated CNN and transformer-based
@@ -20,8 +20,9 @@
   period: Jan 2023 – Dec 2024
   bullets:
     - >-
-      Contributed to NASA-backed SpaceX-21 research on bacterial adhesion and
-      corrosion using International Space Station–derived samples.
+      Contributed to [NASA-backed SpaceX-21 research on bacterial adhesion and
+      corrosion](https://science.nasa.gov/biological-physical/investigations/bac-study/) 
+      using International Space Station–derived samples.
     - >-
       Developed data organization and quality-control pipelines; applied
       classical ML and deep learning methods for corrosion segmentation and
@@ -34,11 +35,11 @@
   period: Jan 2021 – Jan 2024
   bullets:
     - >-
-      Sole developer — engineered cross-server communication systems enabling
-      real-time synchronization across multiple game servers, Minecraft
-      versions, and platforms.
+      Sole Java developer of [LurgCraft](https://store.lurgcraft.com/) — engineered cross-server 
+      communication systems enabling real-time synchronization across multiple game servers, 
+      Minecraft versions, and platforms.
     - >-
-      Delivered 20 custom projects and 46 enhancements to existing codebases,
+      Delivered 20 custom projects and enhanced 46 existing codebases,
       building strong instincts for rapidly reading and extending legacy
       systems.
 
@@ -48,7 +49,15 @@
   location: San Marcos, TX
   period: Dec 2026 (expected)
   bullets:
-    - "Research focus: scalable applied deep learning and domain-specific ML systems."
+    - "Research focus: scalable applied machine learning and domain-specific systems."
+  coursework:
+    - Parallel Processing
+    - Database Theory & Design
+    - Image Processing & Computer Vision
+    - Machine Learning & Pattern Recognition
+    - Advanced Natural Language Processing
+    - Advanced Robotics
+    - Statistical Genetics & Bioinformatics
 
 - type: edu
   title: B.S. Computer Science

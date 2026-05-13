@@ -1,0 +1,21 @@
+subtitle: >-
+  Open to research collaborations, full-time ML/SWE roles, and interesting conversations (with you, yes you!).
+  Reach out via any of the channels below.
+links:
+  - label: Email
+    value: andrewscouten@gmail.com
+    href: "mailto:andrewscouten@gmail.com"
+    mono: true
+  - label: GitHub
+    value: github.com/andrewscouten
+    href: "https://github.com/andrewscouten"
+    mono: true
+  - label: LinkedIn
+    value: linkedin.com/in/andrewscouten
+    href: "https://linkedin.com/in/andrewscouten"
+    mono: true
+  - label: ORCID
+    value: "0009-0004-6418-7158"
+    href: "https://orcid.org/0009-0004-6418-7158"
+    mono: true
+footer: "Andrew Scouten · San Marcos, TX"

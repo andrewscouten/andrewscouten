@@ -29,6 +29,20 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Andrew Scouten",
+  url: "https://andrewscouten.com",
+  jobTitle: "ML Engineer & Researcher",
+  alumniOf: "Texas State University",
+  sameAs: [
+    "https://github.com/andrewscouten",
+    "https://linkedin.com/in/andrewscouten",
+    "https://orcid.org/0009-0004-6418-7158",
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -40,7 +54,13 @@ export default function RootLayout({
       className={`${dmSans.variable} ${dmMono.variable}`}
       style={{ fontFamily: "var(--font-sans), sans-serif" }}
     >
-      <body className="min-h-screen antialiased">{children}</body>
+      <body className="min-h-screen antialiased">
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
+          {children}
+        </body>
     </html>
   );
 }

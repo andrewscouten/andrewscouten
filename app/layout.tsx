@@ -26,21 +26,32 @@ export const metadata: Metadata = {
     url: "https://andrewscouten.com",
     siteName: "Andrew Scouten",
     type: "website",
+    images: [{ url: "https://andrewscouten.com/og-image.jpg", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Andrew Scouten",
+    description: "ML Engineer & Researcher — data pipelines, deep learning, and applied AI.",
+    images: ["https://andrewscouten.com/og-image.jpg"],
   },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Andrew Scouten",
+  "@type": "ProfilePage",
   url: "https://andrewscouten.com",
-  jobTitle: "ML Engineer & Researcher",
-  alumniOf: "Texas State University",
-  sameAs: [
-    "https://github.com/andrewscouten",
-    "https://linkedin.com/in/andrewscouten",
-    "https://orcid.org/0009-0004-6418-7158",
-  ],
+  mainEntity: {
+    "@type": "Person",
+    name: "Andrew Scouten",
+    url: "https://andrewscouten.com",
+    jobTitle: "ML Engineer & Researcher",
+    alumniOf: "Texas State University",
+    sameAs: [
+      "https://github.com/andrewscouten",
+      "https://linkedin.com/in/andrewscouten",
+      "https://orcid.org/0009-0004-6418-7158",
+    ],
+  },
 };
 
 export default function RootLayout({

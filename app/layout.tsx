@@ -17,12 +17,13 @@ const dmMono = DM_Mono({
 export const metadata: Metadata = {
   title: "Andrew Scouten",
   description:
-    "ML Engineer & Researcher — data pipelines, deep learning, and applied AI. Texas State University.",
+    "ML Engineer & Researcher — data pipelines, deep learning, and applied AI. CS student at Texas State University.",
   keywords: ["Andrew Scouten", "ML Engineer", "Machine Learning", "Research", "Texas State"],
   authors: [{ name: "Andrew Scouten" }],
   openGraph: {
-    title: "Andrew Scouten",
-    description: "ML Engineer & Researcher",
+    title: "Andrew Scouten — Building Systems That Learn from Data",
+    description:
+      "ML Engineer & Researcher building data pipelines, deep learning systems, and applied AI. CS student at Texas State University.",
     url: "https://andrewscouten.com",
     siteName: "Andrew Scouten",
     type: "website",
@@ -30,8 +31,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Andrew Scouten",
-    description: "ML Engineer & Researcher — data pipelines, deep learning, and applied AI.",
+    title: "Andrew Scouten — Building Systems That Learn from Data",
+    description:
+      "ML Engineer & Researcher building data pipelines, deep learning systems, and applied AI. CS student at Texas State University.",
     images: ["https://andrewscouten.com/og-image.jpg"],
   },
 };

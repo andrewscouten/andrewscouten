@@ -1,8 +1,19 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { Icon } from "@iconify/react";
+import type { IconifyIcon } from "@iconify/types";
+import javaIcon from "@iconify-icons/devicon/java";
 import forgeData from "../config/skills.yaml";
+import {
+  siPython, siCplusplus, siC, siJavascript, siTypescript, siR,
+  siPytorch, siNvidia, siHuggingface, siScikitlearn,
+  siReact, siAngular, siVuedotjs, siNextdotjs, siNodedotjs, siExpo,
+  siPostgresql, siMongodb, siRedis,
+  siGit, siDocker, siLinux, siAnaconda, siCmake, siApachemaven, siGradle, siUv, siMysql,
+} from "simple-icons";
+import type { SimpleIcon } from "simple-icons";
 
 interface Skill { label: string; category: string; }
 interface CategoryConfig { label: string; color: string; }
@@ -16,6 +27,85 @@ const categoryLabels: Record<string, string> = Object.fromEntries(
   Object.entries(categoryConfig).map(([k, v]) => [k, v.label])
 );
 
+const iconifyMap: Record<string, IconifyIcon> = {
+  Java: javaIcon,
+};
+
+const iconMap: Record<string, SimpleIcon | null> = {
+  Python: siPython,
+  "C++": siCplusplus,
+  C: siC,
+  "C#": null,
+  Java: null,
+  JavaScript: siJavascript,
+  TypeScript: siTypescript,
+  R: siR,
+  PyTorch: siPytorch,
+  CUDA: siNvidia,
+  CNN: null,
+  Transformers: siHuggingface,
+  GNN: null,
+  "Scikit-learn": siScikitlearn,
+  RAG: null,
+  "React.js": siReact,
+  "React Native": siReact,
+  Angular: siAngular,
+  Vue: siVuedotjs,
+  "Next.js": siNextdotjs,
+  "Node.js": siNodedotjs,
+  Expo: siExpo,
+  PostgreSQL: siPostgresql,
+  MongoDB: siMongodb,
+  Redis: siRedis,
+  MySQL: siMysql,
+  Git: siGit,
+  Docker: siDocker,
+  Linux: siLinux,
+  Anaconda: siAnaconda,
+  CMake: siCmake,
+  Maven: siApachemaven,
+  Gradle: siGradle,
+  UV: siUv,
+};
+
+function SkillCard({ skill, color, index }: { skill: Skill; color: string; index: number }) {
+  const icon = iconMap[skill.label];
+  const iconifyIcon = iconifyMap[skill.label];
+  return (
+    <motion.div
+      className="card flex flex-col items-center justify-center gap-2.5 p-4 text-center cursor-default select-none"
+      style={{ minHeight: 100 }}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.22, delay: index * 0.03 }}
+      whileHover={{
+        y: -5,
+        borderColor: color + "88",
+        boxShadow: `0 10px 30px ${color}20`,
+        transition: { duration: 0.18 },
+      }}
+    >
+      {iconifyIcon ? (
+        <Icon icon={iconifyIcon} width={38} height={38} aria-hidden="true" />
+      ) : icon ? (
+        <svg viewBox="0 0 24 24" style={{ width: 38, height: 38, fill: `#${icon.hex}` }} aria-hidden="true">
+          <path d={icon.path} />
+        </svg>
+      ) : (
+        <div
+          className="flex items-center justify-center rounded-lg section-label font-bold"
+          style={{ width: 38, height: 38, fontSize: "0.65rem", background: color + "22", color }}
+        >
+          {skill.label.slice(0, 2).toUpperCase()}
+        </div>
+      )}
+      <span className="text-xs font-medium" style={{ color: "var(--muted)", lineHeight: 1.3 }}>
+        {skill.label}
+      </span>
+    </motion.div>
+  );
+}
+
 interface Particle {
   x: number; y: number;
   orbitRadius: number; orbitAngle: number; orbitSpeed: number; orbitTilt: number;
@@ -28,6 +118,8 @@ interface Hub { x: number; y: number; category: string; }
 function hexAlpha(color: string, alpha: number): string {
   return `${color}${Math.round(Math.max(0, Math.min(1, alpha)) * 255).toString(16).padStart(2, "0")}`;
 }
+
+type View = "orbital" | "grid";
 
 export default function Skills() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -51,6 +143,7 @@ export default function Skills() {
 
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+  const [view, setView] = useState<View>("grid");
 
   useEffect(() => {
     activeCategoryRef.current = activeCategory;
@@ -165,7 +258,6 @@ export default function Skills() {
         transformRef.current.y = dragStartRef.current.ty + (sy - dragStartRef.current.y);
         return;
       }
-      // Hub hover → dim other clusters
       const mw = screenToWorld(sx, sy);
       const hub = hubsRef.current.find(h => Math.hypot(h.x - mw.x, h.y - mw.y) < 30);
       const newCat = hub?.category ?? null;
@@ -224,9 +316,9 @@ export default function Skills() {
     canvas.style.cursor = "grab";
 
     const draw = () => {
+      if (width === 0 || height === 0) { animRef.current = requestAnimationFrame(draw); return; }
       ctx.clearRect(0, 0, width, height);
 
-      // Smooth camera transition
       if (pendingTransitionRef.current) {
         const tgt = pendingTransitionRef.current;
         const cur = transformRef.current;
@@ -252,9 +344,6 @@ export default function Skills() {
       const dimCat = isolatedCat !== null ? null : hoveredCategoryRef.current;
       const hubs = hubsRef.current;
 
-
-
-      // Hub nodes + category labels
       hubs.forEach(hub => {
         if (isolatedCat !== null && hub.category !== isolatedCat) return;
         const color = categoryColors[hub.category];
@@ -276,7 +365,6 @@ export default function Skills() {
         ctx.fillStyle = isDimmed ? hexAlpha(color, 0.2) : color;
         ctx.fill();
 
-        // Hub label — pushed radially outward beyond particle orbits
         const dx = hub.x - cx;
         const dy = hub.y - cy;
         const dist = Math.hypot(dx, dy) || 1;
@@ -299,7 +387,6 @@ export default function Skills() {
         ctx.restore();
       });
 
-      // Skill particles
       particlesRef.current.forEach((p) => {
         if (isolatedCat !== null && p.category !== isolatedCat) return;
         const hub = hubMapRef.current[p.category];
@@ -313,7 +400,6 @@ export default function Skills() {
         const isFiltered = dimCat !== null && p.category !== dimCat;
         const alpha = isFiltered ? 0.13 : p.opacity;
 
-        // Hub → particle line
         ctx.beginPath();
         ctx.moveTo(hub.x, hub.y);
         ctx.lineTo(p.x, p.y);
@@ -370,6 +456,9 @@ export default function Skills() {
   }, []);
 
   const categories = Object.keys(categoryLabels);
+  const groupedSkills = Object.fromEntries(
+    categories.map(cat => [cat, skills.filter(s => s.category === cat)])
+  );
 
   return (
     <section id="skills" className="py-24 px-6" ref={sectionRef}>
@@ -382,120 +471,252 @@ export default function Skills() {
         >
           Skills
         </motion.p>
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.05 }}
-          className="text-3xl sm:text-4xl font-bold mb-4"
-        >
-          Skills &amp; Tools
-        </motion.h2>
 
-        {/* Category filter */}
+        <div className="flex items-center justify-between mb-4">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.05 }}
+            className="text-3xl sm:text-4xl font-bold"
+          >
+            Skills &amp; Tools
+          </motion.h2>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="flex p-1 rounded-lg gap-1"
+            style={{ background: "var(--surface2)", border: "1px solid var(--border)" }}
+          >
+            {(["grid", "orbital"] as View[]).map((v) => (
+              <button
+                key={v}
+                onClick={() => setView(v)}
+                title={v === "orbital" ? "Orbital view" : "Grid view"}
+                className="section-label text-xs flex items-center justify-center"
+                style={{
+                  width: 32,
+                  height: 28,
+                  borderRadius: 6,
+                  position: "relative",
+                  background: "transparent",
+                  color: view === v ? "#000" : "var(--muted)",
+                  border: "none",
+                  cursor: "pointer",
+                  transition: "color 0.15s",
+                }}
+              >
+                {view === v && (
+                  <motion.div
+                    layoutId="view-pill"
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      borderRadius: 6,
+                      background: "var(--cyan)",
+                      zIndex: 0,
+                    }}
+                    transition={{ type: "spring", stiffness: 450, damping: 32 }}
+                  />
+                )}
+                <span style={{ position: "relative", zIndex: 1 }}>
+                  {v === "orbital" ? (
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="12" r="3" />
+                      <circle cx="4" cy="6" r="2" />
+                      <circle cx="20" cy="6" r="2" />
+                      <circle cx="4" cy="18" r="2" />
+                      <circle cx="20" cy="18" r="2" />
+                      <line x1="9" y1="10.5" x2="6" y2="7.5" />
+                      <line x1="15" y1="10.5" x2="18" y2="7.5" />
+                      <line x1="9" y1="13.5" x2="6" y2="16.5" />
+                      <line x1="15" y1="13.5" x2="18" y2="16.5" />
+                    </svg>
+                  ) : (
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                      <rect x="3" y="3" width="7" height="7" rx="1" />
+                      <rect x="14" y="3" width="7" height="7" rx="1" />
+                      <rect x="3" y="14" width="7" height="7" rx="1" />
+                      <rect x="14" y="14" width="7" height="7" rx="1" />
+                    </svg>
+                  )}
+                </span>
+              </button>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Shared category filter */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.15 }}
           className="flex flex-wrap gap-2 mb-8"
         >
-          <button
-            onClick={() => setActiveCategory(null)}
-            className="section-label text-xs px-3 py-1.5 rounded-full transition-all"
-            style={{
-              background: activeCategory === null ? "var(--cyan)" : "var(--surface2)",
-              color: activeCategory === null ? "#000" : "var(--muted)",
-              border: "1px solid var(--border)",
-            }}
-          >
-            All
-          </button>
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(activeCategory === cat ? null : cat)}
-              className="section-label text-xs px-3 py-1.5 rounded-full transition-all"
-              style={{
-                background: activeCategory === cat ? categoryColors[cat] : "var(--surface2)",
-                color: activeCategory === cat ? "#000" : "var(--muted)",
-                border: `1px solid ${activeCategory === cat ? categoryColors[cat] : "var(--border)"}`,
-              }}
-            >
-              {categoryLabels[cat]}
-            </button>
-          ))}
-        </motion.div>
-
-        {/* Canvas */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={inView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          ref={containerRef}
-          className="card relative w-full overflow-hidden"
-          style={{ height: "520px" }}
-        >
-          <canvas ref={canvasRef} className="w-full h-full" />
-          {/* Zoom / reset controls */}
-          <div className="absolute top-3 right-3 flex flex-col gap-1">
-            {[
-              { label: "+", title: "Zoom in",  action: () => controlsRef.current?.zoomIn()  },
-              { label: "−", title: "Zoom out", action: () => controlsRef.current?.zoomOut() },
-              { label: "⟳", title: "Reset view", action: () => controlsRef.current?.reset()  },
-            ].map(({ label, title, action }) => (
+          {([null, ...categories] as (string | null)[]).map((cat) => {
+            const isActive = activeCategory === cat;
+            const activeColor = cat === null ? "var(--cyan)" : categoryColors[cat as string];
+            return (
               <button
-                key={title}
-                title={title}
-                onClick={action}
-                className="section-label text-sm leading-none select-none"
+                key={cat ?? "all"}
+                onClick={() => setActiveCategory(cat === null ? null : activeCategory === cat ? null : cat)}
+                className="section-label text-xs px-3 py-1.5 rounded-full"
                 style={{
-                  width: 28, height: 28,
+                  position: "relative",
                   background: "var(--surface2)",
-                  border: "1px solid var(--border)",
-                  borderRadius: 6,
-                  color: "var(--muted)",
+                  color: isActive ? "#000" : "var(--muted)",
+                  border: `1px solid ${isActive ? activeColor : "var(--border)"}`,
                   cursor: "pointer",
-                  display: "flex", alignItems: "center", justifyContent: "center",
+                  transition: "color 0.15s, border-color 0.25s",
                 }}
               >
-                {label}
+                {isActive && (
+                  <motion.div
+                    layoutId="category-pill"
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      borderRadius: "9999px",
+                      background: activeColor,
+                      zIndex: 0,
+                    }}
+                    transition={{ type: "spring", stiffness: 450, damping: 32 }}
+                  />
+                )}
+                <span style={{ position: "relative", zIndex: 1 }}>
+                  {cat === null ? "All" : categoryLabels[cat as string]}
+                </span>
               </button>
-            ))}
-          </div>
-          <div
-            className="absolute bottom-4 right-4 section-label text-xs"
-            style={{ color: "var(--muted)" }}
-          >
-            scroll to zoom · drag to pan · hover to inspect
-          </div>
+            );
+          })}
         </motion.div>
 
-        {/* Legend — hover dims other categories */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex flex-wrap gap-4 mt-5"
-        >
-          {categories.map((cat) => (
-            <div
-              key={cat}
-              className="flex items-center gap-1.5 cursor-pointer transition-opacity"
-              style={{
-                opacity: hoveredCategory !== null && hoveredCategory !== cat ? 0.3 : 1,
-              }}
-              onMouseEnter={() => { hoveredCategoryRef.current = cat; setHoveredCategory(cat); }}
-              onMouseLeave={() => { hoveredCategoryRef.current = null; setHoveredCategory(null); }}
+        <div style={{ display: view === "orbital" ? "block" : "none" }}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={inView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              ref={containerRef}
+              className="card relative w-full overflow-hidden"
+              style={{ height: "520px" }}
             >
+              <canvas ref={canvasRef} className="w-full h-full" />
+              <div className="absolute top-3 right-3 flex flex-col gap-1">
+                {[
+                  { label: "+", title: "Zoom in",    action: () => controlsRef.current?.zoomIn()  },
+                  { label: "−", title: "Zoom out",   action: () => controlsRef.current?.zoomOut() },
+                  { label: "⟳", title: "Reset view", action: () => controlsRef.current?.reset()   },
+                ].map(({ label, title, action }) => (
+                  <button
+                    key={title}
+                    title={title}
+                    onClick={action}
+                    className="section-label text-sm leading-none select-none"
+                    style={{
+                      width: 28, height: 28,
+                      background: "var(--surface2)",
+                      border: "1px solid var(--border)",
+                      borderRadius: 6,
+                      color: "var(--muted)",
+                      cursor: "pointer",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                    }}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
               <div
-                className="w-2 h-2 rounded-full"
-                style={{ background: categoryColors[cat] }}
-              />
-              <span className="section-label text-xs" style={{ color: "var(--muted)" }}>
-                {categoryLabels[cat]}
-              </span>
-            </div>
-          ))}
-        </motion.div>
+                className="absolute bottom-4 right-4 section-label text-xs"
+                style={{ color: "var(--muted)" }}
+              >
+                scroll to zoom · drag to pan · hover to inspect
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="flex flex-wrap gap-4 mt-5"
+            >
+              {categories.map((cat) => (
+                <div
+                  key={cat}
+                  className="flex items-center gap-1.5 cursor-pointer transition-opacity"
+                  style={{
+                    opacity: hoveredCategory !== null && hoveredCategory !== cat ? 0.3 : 1,
+                  }}
+                  onMouseEnter={() => { hoveredCategoryRef.current = cat; setHoveredCategory(cat); }}
+                  onMouseLeave={() => { hoveredCategoryRef.current = null; setHoveredCategory(null); }}
+                >
+                  <div className="w-2 h-2 rounded-full" style={{ background: categoryColors[cat] }} />
+                  <span className="section-label text-xs" style={{ color: "var(--muted)" }}>
+                    {categoryLabels[cat]}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
+        </div>
+
+        {view === "grid" && (
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35 }}
+            className="mt-6"
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeCategory ?? "all"}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.18 }}
+              >
+                {activeCategory === null ? (
+                  <div
+                    className="grid gap-3"
+                    style={{ gridTemplateColumns: "repeat(auto-fill, minmax(110px, 1fr))" }}
+                  >
+                    {skills.map((skill, i) => (
+                      <SkillCard
+                        key={skill.label}
+                        skill={skill}
+                        color={categoryColors[skill.category]}
+                        index={i}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <div>
+                    <div
+                      className="section-label mb-4 flex items-center gap-2"
+                      style={{ color: categoryColors[activeCategory] }}
+                    >
+                      <div className="w-1.5 h-1.5 rounded-full" style={{ background: categoryColors[activeCategory] }} />
+                      {categoryLabels[activeCategory]}
+                    </div>
+                    <div
+                      className="grid gap-3"
+                      style={{ gridTemplateColumns: "repeat(auto-fill, minmax(110px, 1fr))" }}
+                    >
+                      {groupedSkills[activeCategory].map((skill, i) => (
+                        <SkillCard
+                          key={skill.label}
+                          skill={skill}
+                          color={categoryColors[activeCategory]}
+                          index={i}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
+        )}
       </div>
     </section>
   );

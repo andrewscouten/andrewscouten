@@ -8,15 +8,13 @@ roles:
     accent: "var(--amber)"
   - label: ML Engineer
     accent: "var(--cyan)"
-  - label: Deep Learning Practitioner
-    accent: "var(--amber)"
   - label: Software Engineer
-    accent: "var(--cyan)"
-  - label: Full-Stack Developer
     accent: "var(--amber)"
+  - label: Full-Stack Developer
+    accent: "var(--cyan)"
 bio: >-
   M.S. Computer Science candidate at Texas State University. I build end-to-end
-  data pipelines and train deep learning models for real-world problems — from
+  data pipelines and train models for real-world problems — from
   pavement crack detection to cancer genomics.
 cta:
   - label: View Projects

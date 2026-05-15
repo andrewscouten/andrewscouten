@@ -18,3 +18,11 @@ facts:
     value: San Marcos, TX
   - label: Languages
     value: "English, Native · German, A2/B1"
+
+interests:
+  - family
+  - friends
+  - D&D
+  - home lab
+  - video games
+  - learning new things

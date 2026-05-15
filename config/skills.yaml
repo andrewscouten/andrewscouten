@@ -5,9 +5,13 @@ skills:
     category: language
   - label: C
     category: language
+  - label: C#
+    category: language
   - label: Java
     category: language
   - label: JavaScript
+    category: language
+  - label: TypeScript
     category: language
   - label: R
     category: language
@@ -23,9 +27,13 @@ skills:
     category: ml
   - label: Scikit-learn
     category: ml
-  - label: React
+  - label: RAG
+    category: ml
+  - label: React.js
     category: web
   - label: React Native
+    category: web
+  - label: Vue
     category: web
   - label: Node.js
     category: web
@@ -35,9 +43,13 @@ skills:
     category: data
   - label: MongoDB
     category: data
-  - label: SQL
+  - label: Redis
+    category: data
+  - label: MySQL
     category: data
   - label: Git
+    category: tools
+  - label: Docker
     category: tools
   - label: Linux
     category: tools
@@ -46,6 +58,8 @@ skills:
   - label: CMake
     category: tools
   - label: Maven
+    category: tools
+  - label: Gradle
     category: tools
 
 categories:

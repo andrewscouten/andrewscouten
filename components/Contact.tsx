@@ -4,10 +4,9 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import contactData from "../config/contact.yaml";
 
-const { subtitle, links, footer } = contactData as {
+const { subtitle, links } = contactData as {
   subtitle: string;
   links: { label: string; value: string; href: string; mono: boolean }[];
-  footer: string;
 };
 
 export default function Contact() {
@@ -15,7 +14,7 @@ export default function Contact() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="contact" className="py-24 px-6" ref={ref}>
+    <section id="contact" className="pt-24 px-6" ref={ref}>
       <div className="max-w-5xl mx-auto">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -76,16 +75,6 @@ export default function Contact() {
             </motion.a>
           ))}
         </div>
-      </div>
-
-      {/* Footer */}
-      <div className="max-w-5xl mx-auto mt-20 pt-8 flex items-center justify-between" style={{ borderTop: "1px solid var(--border)" }}>
-        <span className="section-label text-xs" style={{ color: "var(--muted)" }}>
-          {footer}
-        </span>
-        <span className="section-label text-xs" style={{ color: "var(--muted)" }}>
-          {new Date().getFullYear()}
-        </span>
       </div>
     </section>
   );

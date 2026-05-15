@@ -44,6 +44,7 @@ const getLink  = (label: string) => contactLinks.find(l => l.label === label)?.v
 
 type Token    = { text: string; color?: string };
 type CodeLine = Token[];
+type ObjProp  = { key: string; tokens: Token[] };
 
 const C = {
   kw:   "var(--cyan)",

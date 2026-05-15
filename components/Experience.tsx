@@ -73,7 +73,7 @@ function TimelineGroup({
               style={{ borderColor: color, background: "var(--bg)" }}
             />
             <div className="card p-5">
-              <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                 <div>
                   <h3 className="font-semibold text-base" style={{ color: "var(--text)" }}>
                     {renderInlineLinks(item.title)}
@@ -82,7 +82,7 @@ function TimelineGroup({
                     {renderInlineLinks(item.org)}
                   </p>
                 </div>
-                <div className="text-right">
+                <div className="sm:text-right">
                   <p className="section-label text-xs">{item.period}</p>
                   <p className="text-xs mt-0.5" style={{ color: "var(--muted)" }}>
                     {item.location}

@@ -59,7 +59,7 @@ export default function Me() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center px-6 pt-24 pb-16 overflow-hidden">
+    <section className="relative min-h-screen flex flex-col justify-center px-6 pt-16 sm:pt-24 pb-12 sm:pb-16 overflow-hidden">
       {/* Background grid */}
       <div
         className="absolute inset-0 opacity-[0.03]"
@@ -81,7 +81,7 @@ export default function Me() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="section-label mb-6"
+          className="section-label mb-4 sm:mb-6"
         >
           {me.greeting}
         </motion.p>
@@ -122,7 +122,7 @@ export default function Me() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-base sm:text-lg max-w-2xl leading-relaxed mb-10"
+          className="text-base sm:text-lg max-w-2xl leading-relaxed mb-6 sm:mb-10"
           style={{ color: "var(--muted)" }}
         >
           {me.bio}
@@ -177,7 +177,7 @@ export default function Me() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="flex gap-5 mt-12"
+          className="flex gap-5 mt-6 sm:mt-12"
         >
           {me.socials.map((s) => (
             <a

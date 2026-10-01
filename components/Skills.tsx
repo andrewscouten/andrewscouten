@@ -8,9 +8,9 @@ import javaIcon from "@iconify-icons/devicon/java";
 import forgeData from "../config/skills.yaml";
 import {
   siPython, siCplusplus, siC, siJavascript, siTypescript, siR,
-  siPytorch, siNvidia, siHuggingface, siScikitlearn,
-  siReact, siAngular, siVuedotjs, siNextdotjs, siNodedotjs, siExpo,
-  siPostgresql, siMongodb, siRedis,
+  siPytorch, siNvidia, siHuggingface, siScikitlearn, siUltralytics, siOpencv, siLangchain, siLanggraph, siMeta,
+  siReact, siAngular, siVuedotjs, siNextdotjs, siNodedotjs, siFastapi, siExpo,
+  siPostgresql, siMongodb, siRedis, siDuckdb,
   siGit, siDocker, siLinux, siAnaconda, siCmake, siApachemaven, siGradle, siUv, siMysql,
 } from "simple-icons";
 import type { SimpleIcon } from "simple-icons";
@@ -46,6 +46,12 @@ const iconMap: Record<string, SimpleIcon | null> = {
   Transformers: siHuggingface,
   GNN: null,
   "Scikit-learn": siScikitlearn,
+  "Hugging Face": siHuggingface,
+  Ultralytics: siUltralytics,
+  OpenCV: siOpencv,
+  LangChain: siLangchain,
+  LangGraph: siLanggraph,
+  FAISS: siMeta,
   RAG: null,
   "React.js": siReact,
   "React Native": siReact,
@@ -53,11 +59,13 @@ const iconMap: Record<string, SimpleIcon | null> = {
   Vue: siVuedotjs,
   "Next.js": siNextdotjs,
   "Node.js": siNodedotjs,
+  FastAPI: siFastapi,
   Expo: siExpo,
   PostgreSQL: siPostgresql,
   MongoDB: siMongodb,
   Redis: siRedis,
   MySQL: siMysql,
+  DuckDB: siDuckdb,
   Git: siGit,
   Docker: siDocker,
   Linux: siLinux,
@@ -65,7 +73,8 @@ const iconMap: Record<string, SimpleIcon | null> = {
   CMake: siCmake,
   Maven: siApachemaven,
   Gradle: siGradle,
-  UV: siUv,
+  Pixi: null,
+  uv: siUv,
 };
 
 function SkillCard({ skill, color, index }: { skill: Skill; color: string; index: number }) {

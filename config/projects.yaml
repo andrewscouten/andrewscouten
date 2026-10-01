@@ -1,3 +1,25 @@
+- name: inTRuder
+  year: "2026"
+  tag: "Genomics · Tandem Repeats"
+  description: >-
+    Finds novel tandem repeat loci and motifs that reference-based catalogs miss,
+    by scanning the insertions long-read structural variant callers (Sniffles2)
+    already produce instead of assembling whole genomes. Includes a web interface
+    for exploring every candidate locus, with an LLM assistant that answers
+    questions by querying the same tables.
+  tech:
+    - Python
+    - R
+    - Nextflow
+    - Next.js
+    - FastAPI
+    - LangGraph
+    - DuckDB
+    - Pixi
+    - Long-read Genomics
+  accent: "var(--amber)"
+  url: "https://github.com/andrewscouten/inTRuder"
+
 - name: OncoLearn
   year: "2026"
   tag: "Hackathon · Federated Learning"

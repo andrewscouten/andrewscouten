@@ -27,15 +27,31 @@ skills:
     category: ml
   - label: Scikit-learn
     category: ml
+  - label: Hugging Face
+    category: ml
+  - label: Ultralytics
+    category: ml
+  - label: OpenCV
+    category: ml
+  - label: LangChain
+    category: ml
+  - label: LangGraph
+    category: ml
+  - label: FAISS
+    category: ml
   - label: RAG
     category: ml
   - label: React.js
     category: web
   - label: React Native
     category: web
+  - label: Next.js
+    category: web
   - label: Vue
     category: web
   - label: Node.js
+    category: web
+  - label: FastAPI
     category: web
   - label: Expo
     category: web
@@ -47,6 +63,8 @@ skills:
     category: data
   - label: MySQL
     category: data
+  - label: DuckDB
+    category: data
   - label: Git
     category: tools
   - label: Docker
@@ -54,6 +72,10 @@ skills:
   - label: Linux
     category: tools
   - label: Anaconda
+    category: tools
+  - label: Pixi
+    category: tools
+  - label: uv
     category: tools
   - label: CMake
     category: tools
